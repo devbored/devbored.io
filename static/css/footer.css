@@ -1,0 +1,18 @@
+/*  Copyright (c) 2020 DevBored     */
+/*  Licensed under the MIT license. */
+
+.styleless-list-footer
+{
+    margin: auto;
+    padding: 0px;
+    list-style-type: none;
+    font-family:Helvetica,Arial,sans-serif;
+    font-weight:lighter;
+}
+
+.footer-hr
+{
+    border-width: 3px;
+    border-color: gray;
+}
+

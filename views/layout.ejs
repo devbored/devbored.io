@@ -1,0 +1,74 @@
+<!--  Copyright (c) 2020 DevBored     -->
+<!--  Licensed under the MIT license. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" 
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" 
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" 
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" 
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <title>DevBored</title>
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+			<a href="/" class="navbar-brand">DevBored</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapse_target">   
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Different page views injected here -->
+    <div class="container">
+        <%- body %>
+    </div>
+    <hr class="footer-hr" />
+    <!---------------------------------------->
+    
+    <footer class="container">
+        <div>
+            <h5>Links</h4>
+            <ul class="styleless-list-footer">
+                <a class="link-icons" href="https://github.com/DevBored">
+                    <img src="images/GitHub-Mark-32px.png" hspace="5">
+                </a>
+                <a class="link-icons" href="https://www.linkedin.com/in/austin-annestrand-107562144/">
+                    <img src="images/In-2C-34px-R.png" hspace="5">
+                </a>
+            </ul>
+        </div>
+        <br/>
+        <div>
+            <p>
+                Copyright &copy; DevBored
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+/*  Copyright (c) 2020 DevBored     */
+/*  Licensed under the MIT license. */
+.container
+{
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-top: 25px;
+    font-family:Helvetica,Arial,sans-serif;
+}
+
+.blog-post
+{
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.blog-post-thumbnail
+{
+    display: inline-block;
+    margin: 0;
+    height: 140px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+    width: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.blog-post-title
+{
+    display: inline-block;
+    font-size: 20px;
+    font-family:Helvetica,Arial,sans-serif;
+    font-weight:lighter;
+    color: rgb(59, 143, 182);
+    margin-bottom: 0px;
+    padding-left: 20px;
+}
+
+.blog-post-date
+{
+    display: block;
+    font-size: 16px;
+    padding-top: 5px;
+    color: rgb(149, 149, 149);
+}
+
+.article-title
+{
+    font-size: 30px;
+	font-weight: normal;
+    margin-bottom: 0px;
+}
+
+.article-body
+{
+    font-family:Helvetica,Arial,sans-serif;
+    font-weight:lighter;
+    font-size: 16px;
+}
+
+.styleless-list-about
+{
+    margin: 0px;
+    padding-bottom: 2px;
+    padding-left: 0px; 
+    list-style-type: none;
+}
+
+.about-images
+{
+    border-right: 5px black solid;
+    border-left: 5px black solid;
+    border-top: 5px black solid;
+    border-bottom: 5px black solid;
+}
+
+.link-icons
+{
+    font-size: 0;
+    text-decoration: none;
+}
+
+.hr
+{
+    border-width: 2px;
+    border-color: rgb(201, 201, 201);
+    margin-top: 5px;
+}
+
+.hljs
+{
+    padding: 0;
+    background: rgba(221, 221, 221, 0.75);
+}
+
