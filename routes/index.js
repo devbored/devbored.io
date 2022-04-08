@@ -1,6 +1,3 @@
-/*  Copyright (c) 2020 DevBored     */
-/*  Licensed under the MIT license. */
-
 // File containing URL routes
 const routes = require('express').Router()
 

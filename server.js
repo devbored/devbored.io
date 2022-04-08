@@ -1,6 +1,3 @@
-/*  Copyright (c) 2020 DevBored     */
-/*  Licensed under the MIT license. */
-
 // Server Inits
 const express = require('express')
 const server = express()

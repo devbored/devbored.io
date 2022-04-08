@@ -1,6 +1,3 @@
-<!--  Copyright (c) 2020 DevBored     -->
-<!--  Licensed under the MIT license. -->
-
 <h1 class="article-title">Baremetal KL25Z Development - Part 1</h1>
 <p class="blog-post-date">02/06/20</p>
 
@@ -10,17 +7,17 @@
     and school-related projects. At the time, I did not have the
     knowledge of setting up a baremetal development environment
     for the board, so instead I had to settle for using the CodeWarrior
-    Integrated Development Environment (IDE), and to be honest I disliked 
-    using every minute of it. When I later realized it was basically a 
+    Integrated Development Environment (IDE), and to be honest I disliked
+    using every minute of it. When I later realized it was basically a
     "skin" of the Eclipse IDE, it suddenly made sense why 😉.
 </p>
 
 <p>
-    Now, the reasons why I personally tend to dislike IDEs (especially for 
-    embedded development) is that they are often too bloated with unnecessary 
-    auto-generation wizards and they often hide too much detail from the developer for 
-    the sake of being "user-friendly". So instead of going down that route, this 
-    blog post (in a multi-part-series) will describe how to setup your own 
+    Now, the reasons why I personally tend to dislike IDEs (especially for
+    embedded development) is that they are often too bloated with unnecessary
+    auto-generation wizards and they often hide too much detail from the developer for
+    the sake of being "user-friendly". So instead of going down that route, this
+    blog post (in a multi-part-series) will describe how to setup your own
     baremetal development environment for the FRDM-KL25Z board. Lets get started!
 </p>
 <br/>
@@ -30,8 +27,8 @@
     In this first blog post, we will be downloading and building our toolchain.
     Requirements for the host OS can be either Linux, macOS, or Windows 10. Mac
     users might need to download homebrew so that they have a package manager and
-    Windows 10 users can use Windows Subsystem for Linux aka WSL (If there is later 
-    an OS-specific step, I will make sure to bring it up at that point in the blog 
+    Windows 10 users can use Windows Subsystem for Linux aka WSL (If there is later
+    an OS-specific step, I will make sure to bring it up at that point in the blog
     post).
 </p>
 
@@ -39,7 +36,7 @@
     Now, lets look at the list of prerequisite software we need prior to building
     the toolchain:
     <ul>
-        <li>Some C compiler (<a href="https://en.wikipedia.org/wiki/GNU_Compiler_Collection" 
+        <li>Some C compiler (<a href="https://en.wikipedia.org/wiki/GNU_Compiler_Collection"
             target="_blank">GCC</a> or <a href="https://en.wikipedia.org/wiki/Clang" target="_blank">
                 Clang</a> should suffice)</li>
         <li><a href="https://en.wikipedia.org/wiki/Git" target="_blank">Git</a></li>
@@ -70,15 +67,15 @@
     With the pre-requisites out of the way, lets look at what kinds of tools in the toolchain
     we will be downloading and building:
     <ul>
-        <li><b><a href="https://ftp.gnu.org/gnu/binutils/" target="_blank">Binutils</a></b> : Contains 
+        <li><b><a href="https://ftp.gnu.org/gnu/binutils/" target="_blank">Binutils</a></b> : Contains
             the GNU assembler, linker, etc. We will cross-compile this for <b><code>arm-none-eabi</code></b></li>
-        <li><b><a href="https://ftp.gnu.org/gnu/gcc/" target="_blank">GCC</a></b> : Contains the C/C++ compiler. 
+        <li><b><a href="https://ftp.gnu.org/gnu/gcc/" target="_blank">GCC</a></b> : Contains the C/C++ compiler.
             We will cross-compile this for <b><code>arm-none-eabi</code></b></li>
-        <li><b><a href="ftp://sourceware.org/pub/newlib/index.html" target="_blank">Newlib</a></b> : An implementation 
+        <li><b><a href="ftp://sourceware.org/pub/newlib/index.html" target="_blank">Newlib</a></b> : An implementation
             of the C library specifically for embedded systems</li>
-        <li><b><a href="https://ftp.gnu.org/gnu/gdb/" target="_blank">GDB</a></b> : Contains the C/C++ debugger. 
+        <li><b><a href="https://ftp.gnu.org/gnu/gdb/" target="_blank">GDB</a></b> : Contains the C/C++ debugger.
             We will cross-compile this for <b><code>arm-none-eabi</code></b></li>
-        <li><b><a href="https://sourceforge.net/p/openocd/code/ci/v0.10.0/tree/" target="_blank">OpenOCD</a></b> : A free 
+        <li><b><a href="https://sourceforge.net/p/openocd/code/ci/v0.10.0/tree/" target="_blank">OpenOCD</a></b> : A free
             and open-source tool that can program and debug many different target processors.
     </ul>
     <em>(FYI: Each of the list items is a hyperlink to their respective download page for convenience)</em>
@@ -86,18 +83,18 @@
     <br/>
     <h3><b>Binutils</b></h3>
     Let's start with downloading and building Binutils. The Binutils link will take you to the FTP site to download
-    the tool. Download the tarball (i.e. tar.gz) version that you want to use (I downloaded the 
-    <b>binutils-2.31.tar.gz</b> if you want to follow along). It would also be a good optional idea to download and use the 
+    the tool. Download the tarball (i.e. tar.gz) version that you want to use (I downloaded the
+    <b>binutils-2.31.tar.gz</b> if you want to follow along). It would also be a good optional idea to download and use the
     <b>.sig</b> file to verify the integrity of the downloaded file using GNU GPG but this is an optional step.
 </p>
 <p>
-    Now, building Binutils is fairly straightforward using the automake tool. We will do an out-of-source build by creating 
-    and going into a 'build' directory, then specify build options to the Automake configure script. For brevity, we will 
-    focus on 3 main build options "prefix", "bindir", and "target". The "prefix" option tells automake where you want the 
-    built binaries installed-to during the "make install-strip" step (it will default to <b>/usr/local</b> if left undefined). 
-    The "bindir" option tells automake which directory to install the user executables to. And the "target" option tells automake 
-    which target processor to build Binutils for. I personally like having the Binutil tool items in the <b>/opt/arm-none-eabi</b> 
-    folder and the Binutil user executables in the <b>/opt/bin</b> folder on my machine but you can modify this setup if you want 
+    Now, building Binutils is fairly straightforward using the automake tool. We will do an out-of-source build by creating
+    and going into a 'build' directory, then specify build options to the Automake configure script. For brevity, we will
+    focus on 3 main build options "prefix", "bindir", and "target". The "prefix" option tells automake where you want the
+    built binaries installed-to during the "make install-strip" step (it will default to <b>/usr/local</b> if left undefined).
+    The "bindir" option tells automake which directory to install the user executables to. And the "target" option tells automake
+    which target processor to build Binutils for. I personally like having the Binutil tool items in the <b>/opt/arm-none-eabi</b>
+    folder and the Binutil user executables in the <b>/opt/bin</b> folder on my machine but you can modify this setup if you want
     to. After running the configure script, Automake will then configure a Makefile based on your "configure" options.
 </p>
 <p>
@@ -125,7 +122,7 @@
             # Create a 'build' directory and 'cd' into it
             $ mkdir build && cd build
 
-            # Specify build options to the automake configure stript 
+            # Specify build options to the automake configure stript
             # We are targeting the ARM Cortex M0+, so we choose "arm-none-eabi" for the target
             $ ../configure --prefix=/opt/arm-none-eabi --bindir=/opt/bin --target=arm-none-eabi
 
@@ -140,13 +137,13 @@
         </code>
     </pre>
     <h3><b>GCC & Newlib</b></h3>
-    That takes care of Binutils so lets move onto GCC & Newlib. When you click on the Newlib hyperlink from the toolchain 
-    list above, go ahead and save the "index" HTML file somewhere on your computer. Once downloaded, open it in a web 
-    browser to get access to the Newlib tarballs (I downloaded the <b>newlib-3.3.0.tar.gz</b> if you want to follow along). 
-    The download and decompressing-and-unarchiving of GCC should be the exact same steps as Binutils (I downloaded the 
-    <b>gcc-7.4.0</b> if you want to follow along). It would also be a good optional idea to download and use the 
-    <b>.sig</b> file to verify the integrity of the downloaded file using GNU GPG but this is an optional step. 
-    The only difference, again, is the "configure" options. If you want to follow along exactly what I did, here's what 
+    That takes care of Binutils so lets move onto GCC & Newlib. When you click on the Newlib hyperlink from the toolchain
+    list above, go ahead and save the "index" HTML file somewhere on your computer. Once downloaded, open it in a web
+    browser to get access to the Newlib tarballs (I downloaded the <b>newlib-3.3.0.tar.gz</b> if you want to follow along).
+    The download and decompressing-and-unarchiving of GCC should be the exact same steps as Binutils (I downloaded the
+    <b>gcc-7.4.0</b> if you want to follow along). It would also be a good optional idea to download and use the
+    <b>.sig</b> file to verify the integrity of the downloaded file using GNU GPG but this is an optional step.
+    The only difference, again, is the "configure" options. If you want to follow along exactly what I did, here's what
     that looks like (again you can change/omit the "prefix" and "bindir" options if you wish):
     <pre>
         <code class="bash">
@@ -180,9 +177,9 @@
             # Create a 'build' directory and 'cd' into it
             $ mkdir build && cd build
 
-            # Specify build options to the automake configure stript 
+            # Specify build options to the automake configure stript
             # We are targeting the ARM Cortex M0+, so we choose "arm-none-eabi" for the target
-            # Enable the C and C++ support and disable the Native Language Support (NLS) 
+            # Enable the C and C++ support and disable the Native Language Support (NLS)
             # Build only static libs and target Newlib as C lib
             # Give the full path to Newlib header location
             $ sudo ../configure --target=arm-none-eabi \
@@ -209,9 +206,9 @@
             # Make sure "arm-none-eabi" tools are in the PATH env variable
             # FYI: It's best to put this in a ".bashrc" file (or equivalent) so that this is persistant
             #      (again, <b>/opt/bin</b> was based off of my configure script "prefix" value)
-            $ export PATH="${PATH}:/opt/bin" 
+            $ export PATH="${PATH}:/opt/bin"
 
-            # Specify build options to the automake configure stript 
+            # Specify build options to the automake configure stript
             # We are targeting the ARM Cortex M0+, so we choose "arm-none-eabi" for the target
             $ ../configure --target=arm-none-eabi --prefix=/opt/arm-none-eabi
 
@@ -224,18 +221,18 @@
             $ cd ../..
         </code>
     </pre>
-    I skipped the "make install" step when building Newlib since I like to keep my C libraries separated from 
-    the toolchain just as my personal preference (I use symlinks to the Newlib headers and libs instead). 
+    I skipped the "make install" step when building Newlib since I like to keep my C libraries separated from
+    the toolchain just as my personal preference (I use symlinks to the Newlib headers and libs instead).
     But you can do "make install" if you want to.
 </p>
 </br>
 <p>
     <h3><b>GDB</b></h3>
-    That takes care of GCC so lets move onto GDB. The download and decompressing-and-unarchiving of GDB 
-    should be the exact same steps as Binutils and Newlib (If you want to follow along with me, I use gdb-8.3). 
-    It would also be a good optional idea to download and use the <b>.sig</b> file to verify the integrity of the 
-    downloaded file using GNU GPG but this is an optional step. The only difference, again, is the "configure" 
-    options. If you want to follow along exactly what I did, here's what that looks like (again you can change/omit 
+    That takes care of GCC so lets move onto GDB. The download and decompressing-and-unarchiving of GDB
+    should be the exact same steps as Binutils and Newlib (If you want to follow along with me, I use gdb-8.3).
+    It would also be a good optional idea to download and use the <b>.sig</b> file to verify the integrity of the
+    downloaded file using GNU GPG but this is an optional step. The only difference, again, is the "configure"
+    options. If you want to follow along exactly what I did, here's what that looks like (again you can change/omit
     the "prefix" and "bindir" options if you wish):
     <pre>
         <code class="bash">
@@ -260,7 +257,7 @@
             # Create a 'build' directory and 'cd' into it
             $ mkdir build && cd build
 
-            # Specify build options to the automake configure stript 
+            # Specify build options to the automake configure stript
             # We are targeting the ARM Cortex M0+, so we choose "arm-none-eabi" for the target
             # Enabling the text-user-interface (TUI) mode,
             # this is optional and you need <b>"libncurses5-dev"</b> and <b>"libncursesw5-dev"</b> if you want to
@@ -284,7 +281,7 @@
 <p>
     <h3><b>OpenOCD</b></h3>
     Almost there! Lastly we need to download and install OpenOCD. Now if you're using Windows like me, we
-    need a Linux-to-Windows cross-compiler and the hidapi library for OpenOCD to build. The 
+    need a Linux-to-Windows cross-compiler and the hidapi library for OpenOCD to build. The
     <a href="https://en.wikipedia.org/wiki/MinGW" target="_blank">mingw-w64</a> cross-compiler
     will do the trick. The "mingw-w64" cross-compiler can be downloaded via package manager in WSL.
     <br><br>
@@ -304,9 +301,9 @@
         </code>
     </pre>
     The easiest way to build the hidapi library on <b>Windows</b> is to open the "hidapi.sln" located in the
-    "windows" folder in the root of the hidapi directory using Visual Studio. Before building, make sure 
-    to retarget the sln to your latest Windows SDK and Toolset, set the release-mode to "Debug" and the 
-    architecture to "x64", then build the "hidapi" project. After building in Visual Studio, you should 
+    "windows" folder in the root of the hidapi directory using Visual Studio. Before building, make sure
+    to retarget the sln to your latest Windows SDK and Toolset, set the release-mode to "Debug" and the
+    architecture to "x64", then build the "hidapi" project. After building in Visual Studio, you should
     have the "hidapi.dll" file in the <b>hidapi/windows/Debug</b> folder.
     <br><br>
     Use the commands in this block if building hidapi on <b>Linux/macOS</b>, otherwise skip this part:
@@ -326,7 +323,7 @@
             $ sudo make install
         </code>
     </pre>
-    Now, lets download and build OpenOCD. 
+    Now, lets download and build OpenOCD.
     <pre>
         <code class="bash">
             # Git cloning the v0.10.0 of OpenOCD
@@ -350,7 +347,7 @@
 
             # Specify build options to the automake configure stript
             # Disable warnings-as-errors, choose cmsis-dap as target interface
-            # Disable documentation gereration 
+            # Disable documentation gereration
             $ ../configure --prefix=/mnt/c/openocd --host=x86_64-w64-mingw32 --disable-werror \
               --enable-cmsis-dap --disable-doxygen-pdf --build=x86_64-w64-mingw32
 
@@ -373,10 +370,10 @@
         <code>
             # Specify build options to the automake configure stript
             # Disable warnings-as-errors, choose cmsis-dap as target interface
-            # Disable documentation gereration 
+            # Disable documentation gereration
             $ ../configure --prefix=/opt/openocd --bindir=/opt/bin --disable-werror \
               --enable-cmsis-dap --disable-doxygen-pdf
-            
+
             # Run the generated Makefile (Perfect time to grab a cup of coffee... ☕)
             # If you have a multi-core/multi-threaded processor, use -j to run Make using Paralel Execution
             # (i.e. "-j 4" will spawn 4 parallel 'jobs', the compile time will be significantly faster)
@@ -389,7 +386,7 @@
             # if OpenOCD cannot find that library
             # FYI: It's best to put this in a ".bashrc" file (or equivalent) so that this is persistant
             $ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
-            
+
             # Leave the OpenOCD root directory
             $ cd ../..
         </code>
