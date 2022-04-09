@@ -1,10 +1,10 @@
 // Server Inits
-const express = require('express')
-const server = express()
-const bodyParser = require('body-parser')
-const path = require('path')
-const routes = require('./routes')
-const expLayouts = require('express-ejs-layouts')
+const express       = require('express')
+const server        = express()
+const bodyParser    = require('body-parser')
+const path          = require('path')
+const routes        = require('./routes')
+const expLayouts    = require('express-ejs-layouts')
 
 // Load View Engine
 server.set('views', path.join(__dirname, 'views'))

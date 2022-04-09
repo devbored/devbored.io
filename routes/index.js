@@ -1,9 +1,17 @@
+const fs = require("fs");
+const showdown = require('showdown')
+
 // File containing URL routes
 const routes = require('express').Router()
 
 /*  Main Pages  */
 routes.get('/', function(req, res) {
-    res.render('blog/index')
+    const testMeMd = fs.readFileSync(__dirname + '/../views/blog/testMe.md').toString()
+    var converter = new showdown.Converter()
+    var testMe = converter.makeHtml(testMeMd)
+    res.render('blog/index', {
+        testMe: testMe
+    })
 })
 routes.get('/blog', function (req, res) {
     res.render('blog/index')
