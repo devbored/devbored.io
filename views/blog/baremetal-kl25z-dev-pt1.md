@@ -30,13 +30,13 @@ post).
 Now, lets look at the list of prerequisite software we need prior to building
 the toolchain:
 - Some C compiler (GCC or Clang should suffice)
-- [Git]("https://en.wikipedia.org/wiki/Git")
-- [Make]("https://en.wikipedia.org/wiki/Make_(software)")
-- [libtool]("https://en.wikipedia.org/wiki/GNU_Libtool")
-- [pkg-config]("https://en.wikipedia.org/wiki/Pkg-config")
-- [autoconf]("https://en.wikipedia.org/wiki/Autoconf")
-- [automake]("https://en.wikipedia.org/wiki/Automake")
-- [texinfo]("https://en.wikipedia.org/wiki/Texinfo")
+- Git
+- Make
+- libtool
+- pkg-config
+- autoconf
+- automake
+- texinfo
 
 We can just use a package manager for this part:
 ```Bash
@@ -57,14 +57,11 @@ With the pre-requisites out of the way, lets look at what kinds of tools in the 
 - GDB : Contains the C/C++ debugger. We will cross-compile this for arm-none-eabi
 - OpenOCD : A free and open-source tool that can program and debug many different target processors.
 
-(FYI: Each of the list items is a hyperlink to their respective download page for convenience)
-
 ## Binutils
-Let's start with downloading and building Binutils. The Binutils link will take you to the FTP site to download
-the tool. Download the tarball (i.e. tar.gz) version that you want to use (I downloaded the
-**binutils-2.31.tar.gz** if you want to follow along). It would also be a good optional idea to download and use the
-**.sig** file to verify the integrity of the downloaded file using GNU GPG but this is an optional step.
-
+Let's start with downloading and building Binutils. Download the tarball (i.e. tar.gz) version
+that you want to use (I downloaded the **binutils-2.31.tar.gz** if you want to follow along). It
+would also be a good optional idea to download and use the **.sig** file to verify the integrity
+of the downloaded file using GNU GPG but this is an optional step.
 
 Now, building Binutils is fairly straightforward using the automake tool. We will do an out-of-source build by
 creating and going into a 'build' directory, then specify build options to the Automake configure script.
@@ -114,14 +111,13 @@ If you want to follow along exactly what I did, here's what that looks like:
 ```
 
 ## GCC & Newlib
-That takes care of Binutils so lets move onto GCC & Newlib. When you click on the Newlib hyperlink from the toolchain
-list above, go ahead and save the "index" HTML file somewhere on your computer. Once downloaded, open it in a web
-browser to get access to the Newlib tarballs (I downloaded the **newlib-3.3.0.tar.gz** if you want to follow along).
-The download and decompressing-and-unarchiving of GCC should be the exact same steps as Binutils (I downloaded the
-**gcc-7.4.0** if you want to follow along). It would also be a good optional idea to download and use the
-**.sig** file to verify the integrity of the downloaded file using GNU GPG but this is an optional step.
-The only difference, again, is the "configure" options. If you want to follow along exactly what I did, here's what
-that looks like (again you can change/omit the "prefix" and "bindir" options if you wish):
+That takes care of Binutils so lets move onto GCC & Newlib (I downloaded the **newlib-3.3.0.tar.gz** if you want
+to follow along). The download and decompressing-and-unarchiving of GCC and Newlib should be the exact same
+steps as Binutils (I downloaded the **gcc-7.4.0** and **newlib-3.3.0.tar.gz** if you want to follow along). It
+would also be a good optional idea to download and use the **.sig** file to verify the integrity of the downloaded
+file using GNU GPG but this is an optional step. The only difference, again, is the "configure" options. If you
+want to follow along exactly what I did, here's what that looks like (again you can change/omit the "prefix" and
+"bindir" options if you wish):
 
 ```Bash
     # Decompress and unarchive the tarball - Assuming you already downloaded the Newlib tarball
@@ -203,7 +199,7 @@ But you can do "make install" if you want to.
 
 ## GDB
 That takes care of GCC so lets move onto GDB. The download and decompressing-and-unarchiving of GDB
-should be the exact same steps as Binutils and Newlib (If you want to follow along with me, I use gdb-8.3).
+should be the exact same steps as Binutils and Newlib (If you want to follow along with me, I use **gdb-8.3**).
 It would also be a good optional idea to download and use the **.sig** file to verify the integrity of the
 downloaded file using GNU GPG but this is an optional step. The only difference, again, is the "configure"
 options. If you want to follow along exactly what I did, here's what that looks like (again you can change/omit
