@@ -23,19 +23,21 @@
 
 img[alt=ProfilePic] {
     width:          200px;
-    border-right:   4px black solid;
-    border-left:    4px black solid;
-    border-top:     4px black solid;
-    border-bottom:  4px black solid;
+    border-right:   2px black solid;
+    border-left:    2px black solid;
+    border-top:     2px black solid;
+    border-bottom:  2px black solid;
+    border-radius:  25px;
 }
 
 img[alt=kl25zBoard] {
-    border-right:   4px black solid;
-    border-left:    4px black solid;
-    border-top:     4px black solid;
-    border-bottom:  4px black solid;
+    border-right:   2px black solid;
+    border-left:    2px black solid;
+    border-top:     2px black solid;
+    border-bottom:  2px black solid;
     display:        block;
     margin-left:    auto;
     margin-right:   auto;
     width:          50%;
+    border-radius:  25px;
 }

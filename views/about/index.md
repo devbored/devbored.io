@@ -2,8 +2,8 @@
 ***
 
 ![ProfilePic](images/me.jpg)
-- Name:  Austin
-- Email: devbored.io@gmail.com
+- Name:  Austin Annestrand
+- Email: austin.annestrand@gmail.com
 
 Here you'll find blog-posts relating to:
 
