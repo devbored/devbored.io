@@ -1,6 +1,8 @@
 # Baremetal KL25Z Development - Part 1
 02/06/20
 
+![kl25zBoard](images/kl25z.jpg)
+
 The FRDM-KL25Z is an excellent ARM Cortex M0+ development board
 from NXP and I have used it quite a bit in many of my personal
 and school-related projects. At the time, I did not have the

@@ -1,15 +1,7 @@
-.styleless-list-footer
-{
-    margin: auto;
-    padding: 0px;
-    list-style-type: none;
-    font-family:Helvetica,Arial,sans-serif;
-    font-weight:lighter;
+.styleless-list-footer {
+    margin:             auto;
+    padding:            0px;
+    list-style-type:    none;
+    font-family:        Helvetica,Arial,sans-serif;
+    font-weight:        lighter;
 }
-
-.footer-hr
-{
-    border-width: 3px;
-    border-color: gray;
-}
-
