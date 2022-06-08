@@ -28,8 +28,8 @@ routes.get('/about', function (req, res) {
 
 //  Blog Posts
 // ====================================================================================================================
-routes.get('/baremetal-kl25z-dev-pt1', function (req,res) {
-    var body = md2Html(blogDir + 'baremetal-kl25z-dev-pt1.md')
+routes.get(/\/*.md/, function (req,res) {
+    var body = md2Html(blogDir + req.originalUrl)
     res.render(__dirname + '/views/layout', {body: body})
 })
 
